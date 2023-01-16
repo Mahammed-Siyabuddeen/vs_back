@@ -6,12 +6,13 @@ import mongoose from "mongoose";
 import chartSchema from "./chartSchema.js";
 const app=express()
 env.config()
-const port=process.env.PORT||8000
+const port=process.env.PORT||5000
 app.listen(port,()=>console.log(`listening port ${port}`))
 
-app.use(bodyParser.json({limit:'50mb',extended:true}))
+app.use(bodyParser.json({limit:'800mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'50mb',extended:true}))
-app.use(cors)
+app.use(cors())
+
 app.use('/',(req,res)=>{
     try {
         chartSchema.find().then((data)=>{
