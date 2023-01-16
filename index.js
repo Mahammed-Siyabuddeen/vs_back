@@ -12,7 +12,15 @@ app.use(bodyParser.json({limit:'50mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'50mb',extended:true}))
 app.use(cors)
 app.use('/',(req,res)=>{
-    res.send("hello wolrd")
+    try {
+        chartSchema.find().then((data)=>{
+            res.status(200).json(data)
+        }).catch((error)=>{
+            res.status(404).send("error message ")
+        })
+    } catch (error) {
+        res.send("error")
+    }
 })
 
 mongoose.connect(process.env.CONNECTIONURL,{
