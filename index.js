@@ -3,6 +3,7 @@ import cors from 'cors'
 import bodyParser from "body-parser";
 import env from  'dotenv'
 import mongoose from "mongoose";
+import chartSchema from "./chartSchema.js";
 const app=express()
 env.config()
 const port=process.env.PORT||9000
