@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import chartSchema from "./chartSchema.js";
 const app=express()
 env.config()
-const port=process.env.PORT||9000
+const port=process.env.PORT||8000
 app.listen(port,()=>console.log(`listening port ${port}`))
 
 app.use(bodyParser.json({limit:'50mb',extended:true}))
@@ -23,7 +23,7 @@ app.use('/',(req,res)=>{
         res.send("error")
     }
 })
-
-mongoose.connect(process.env.CONNECTIONURL,{
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.CONNECTION_URL,{
     useNewUrlParser:true
 })
